@@ -1,5 +1,7 @@
 package Ejercicio;
 
+import java.util.List;
+import java.util.ArrayList;
 /*
  * Dados n pares de paréntesis, implementa un algoritmo para generar todas las combinaciones
  * válidas de paréntesis.
@@ -21,7 +23,27 @@ package Ejercicio;
  */
 public class EjercicioDos {
 
-    // List<List<Integer>> subsets(List<Integer> set) {
+    public List<String> generateParenthesis(int n) {
+        List<String> result = new ArrayList<>();
+        backtrack(result, new StringBuilder(), 0, 0, n);
+        return result;
+    }
 
-    // }
+    private void backtrack(List<String> result, StringBuilder actual, int abrir, int cerrar, int max) {
+        if (actual.length() == max * 2) {
+            result.add(actual.toString());
+            return;
+        }
+        if (abrir < max) {
+            actual.append('(');
+            backtrack(result, actual, abrir + 1, cerrar, max);
+            actual.deleteCharAt(actual.length() - 1);
+        }
+        if (cerrar < abrir) {
+            actual.append(')');
+            backtrack(result, actual, abrir, cerrar + 1, max);
+            actual.deleteCharAt(actual.length() - 1);
+        }
+    
+    }
 }

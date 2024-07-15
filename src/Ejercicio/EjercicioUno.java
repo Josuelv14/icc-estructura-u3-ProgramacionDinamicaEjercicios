@@ -29,7 +29,18 @@ import java.util.List;
  */
 public class EjercicioUno {
 
-    // List<List<Integer>> subsets(List<Integer> set) {
+    public List<List<Integer>> subsets(List<Integer> set) {
+        List<List<Integer>> result = new ArrayList<>();
+        result.add(new ArrayList<>()); // Agregamos el conjunto vacío inicialmente
 
-    // }
+        for (Integer num : set) {
+            int size = result.size();
+            for (int i = 0; i < size; i++) {
+                List<Integer> subset = new ArrayList<>(result.get(i));
+                subset.add(num);
+           
+            }
+        }
+        return result;
+    }
 }
